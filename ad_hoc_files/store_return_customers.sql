@@ -198,7 +198,7 @@ customer_repurchase_within_14d as (
         and oli.order_processed_date_pst >= d.refund_date
         and oli.order_processed_date_pst <= d.refund_date + interval '15 day'
         and oli.order_processed_date_pst <= date('2025-05-29')
-    where d.rn_order = 1 -- 🚩 Correct: FIRST refund window per order
+    where d.rn_order = 1 -- FIRST refund window per order
       and oli.gift_card is false
 ),
 
