@@ -169,7 +169,7 @@ customer_return_events as (
     group by 1,2,3
 ),
 
--- 🚩 Step 1: Deduplicate orders per customer_id + order_id
+-- Step 1: Deduplicate orders per customer_id + order_id
 deduped_orders as (
     select
         r.customer_id,
@@ -185,7 +185,7 @@ deduped_orders as (
     where o.cancelled_at is null
 ),
 
--- 🚩 Step 2: Join deduped_orders to ALL line_items
+-- Step 2: Join deduped_orders to ALL line_items
 customer_repurchase_within_14d as (
     select
         d.customer_id,
@@ -202,7 +202,7 @@ customer_repurchase_within_14d as (
       and oli.gift_card is false
 ),
 
--- 🚩 Step 3: Sum all line_items for each order
+-- Step 3: Sum all line_items for each order
 repurchase_revenue_2week as (
     select 
         p.customer_id,
